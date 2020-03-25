@@ -1,0 +1,11 @@
+#footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display:none;
+    background: #eee;
+}
+
+#movieList{
+margin-bottom: 20px;
+}
