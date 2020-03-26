@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-    baseURL: 'http://newexplorerapi.gojupiter.tech/api/',
+    baseURL: 'http://localhost:3030/api/',
 })
 
 export const createBlock = payload => api.post(`/block`, payload)
