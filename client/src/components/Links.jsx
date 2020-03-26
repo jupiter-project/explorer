@@ -20,18 +20,23 @@ class Links extends Component {
         return (
             <React.Fragment>
                 <Link to="/" className="navbar-brand">
-                    My first MERN Application
+                    Jupiter Explorer v0.3
                 </Link>
                 <Collapse>
                     <List>
                         <Item>
-                            <Link to="/" className="nav-link">
-                                Movies
+                            <Link to="/api/blocks" className="nav-link">
+                                Blocks
                             </Link>
                         </Item>
                         <Item>
-                            <Link to="/create" className="nav-link">
-                                Create Movie
+                            <Link to="/api/block" className="nav-link">
+                                Block
+                            </Link>
+                        </Item>
+                        <Item>
+                            <Link to="/api/txs" className="nav-link">
+                                Transactions
                             </Link>
                         </Item>
                     </List>

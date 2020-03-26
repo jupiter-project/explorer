@@ -7,17 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "express": "*",
-    "axios": "*",
-    "mongoose": "*",
-    "request": "*",
-    "nodemon": "*",
-    "cors": "*"
-  },
-  "keywords": [],
-  "author": "sigwo",
-  "license": "ISC",
-  "dependencies": {
     "axios": "^0.19.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
@@ -25,8 +14,12 @@
     "mongoose": "^5.8.0",
     "nodemon": "^2.0.1",
     "react-js-pagination": "^3.0.3",
-    "react-table": "^7.0.0",
+    "react-tabl": "^0.8.0",
+    "react-table": "^6.x.x",
     "reactjs-popup": "^1.5.0",
     "request": "^2.88.0"
-  }
+  },
+  "keywords": [],
+  "author": "sigwo",
+  "license": "ISC"
 }

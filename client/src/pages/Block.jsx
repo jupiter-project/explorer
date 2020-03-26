@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
 import ReactTable from 'react-table'
 import api from '../api'
 
@@ -11,11 +10,11 @@ const Wrapper = styled.div`
     padding: 0 40px 40px 40px;
 `
 
-class BlockList extends Component {
+class Block extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            blocks: [],
+            block: [],
             columns: [],
             isLoading: false,
         }
@@ -24,60 +23,47 @@ class BlockList extends Component {
     componentDidMount = async () => {
         this.setState({ isLoading: true })
 
-        await api.getBlocks().then(blocks => {
+        await api.getBlockId().then(block => {
             this.setState({
-                blocks: blocks.data.data,
+                block: block.data.data,
                 isLoading: false,
             })
         })
     }
 
     render() {
-        const { blocks, isLoading } = this.state
-        console.log('TCL: BlockList -> render -> blocks', blocks)
+        const { block, isLoading } = this.state
+        console.log('TCL: Block -> render -> block', block)
 
         const columns = [
             {
                 Header: 'Block Height',
                 accessor: 'height',
                 filterable: true,
-                Cell: function(props) {
-                    return (
-                        <span>
-                            <Link to={`/api/block/${props.original.height}`}>{props.original.height}</Link>
-                        </span>
-                    )
-                },
             },
             {
                 Header: 'Age',
                 accessor: 'timestamp',
-                filterable: false,
+                filterable: true,
             },
             {
-                Header: 'Fees',
+                Header: 'Fee Reward',
                 accessor: 'totalFeeNQT',
-                filterable: false,
+                filterable: true,
             },
             {
                 Header: 'Amount',
                 accessor: 'amountNQT',
-                filterable: false,
-            },
-            {
-                Header: 'Transactions',
-                accessor: 'transactions.length',
-                filterable: false,
-            },
-            {
-                Header: 'Forger',
-                accessor: 'generatorRS',
                 filterable: true,
+            },
+            {
+                Header: 'Payload Hash',
+                accessor: 'block',
             },
         ]
 
         let showTable = true
-        if (!blocks.length) {
+        if (!block.length) {
             showTable = false
         }
 
@@ -85,12 +71,12 @@ class BlockList extends Component {
             <Wrapper>
                 {showTable && (
                     <ReactTable
-                        data={blocks}
+                        data={block}
                         columns={columns}
                         loading={isLoading}
-                        defaultPageSize={25}
+                        defaultPageSize={1}
                         showPageSizeOptions={true}
-                        minRows={0}                 
+                        minRows={0}
                     />
                 )}
             </Wrapper>
@@ -98,4 +84,4 @@ class BlockList extends Component {
     }
 }
 
-export default BlockList
+export default Block
