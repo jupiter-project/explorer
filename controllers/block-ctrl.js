@@ -90,17 +90,20 @@ getBlockId = async (req, res) => {
 }
 
 getBlocks = async (req, res) => {
-    await Block.find({}, (err, blocks) => {
-        if (err) {
-            return res.status(400).json({ success: false, error: err })
-        }
+
+    try {
+        const blocks = await Block.find().sort({ height: -1 });
         if (!blocks.length) {
             return res
                 .status(404)
                 .json({ success: false, error: `Block not found` })
         }
-        return res.status(200).json({ success: true, data: blocks })
-    }).catch(err => console.log(err))
+
+        return res.status(200).json({ success: true, data: blocks, test: 'This is the correct method' })
+    } catch (e) {
+        console.log(err)
+        return res.status(500).json({ success: false, error: err });
+    }
 }
 
 module.exports = {

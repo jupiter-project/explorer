@@ -14,6 +14,7 @@ class Block extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            height: '',
             block: [],
             columns: [],
             isLoading: false,
@@ -21,11 +22,16 @@ class Block extends Component {
     }
 
     componentDidMount = async () => {
+        const { pathname } = this.props.location;
+        const height = pathname.replace('/api/block/', '');
+        this.setState({
+            height,
+        });
         this.setState({ isLoading: true })
 
-        await api.getBlock().then(block => {
+        await api.getBlock(height).then(block => {
             this.setState({
-                block: block.data.data,
+                block: [block.data.data],
                 isLoading: false,
             })
         })
