@@ -75,7 +75,6 @@ class BlockList extends Component {
                 filterable: true,
             },
         ]
-
         let showTable = true
         if (!blocks.length) {
             showTable = false

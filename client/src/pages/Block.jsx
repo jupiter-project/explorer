@@ -23,7 +23,7 @@ class Block extends Component {
     componentDidMount = async () => {
         this.setState({ isLoading: true })
 
-        await api.getBlockId().then(block => {
+        await api.getBlock().then(block => {
             this.setState({
                 block: block.data.data,
                 isLoading: false,
