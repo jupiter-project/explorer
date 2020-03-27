@@ -8,6 +8,7 @@ import 'react-table/react-table.css'
 
 const Wrapper = styled.div`
     padding: 0 40px 40px 40px;
+    text-align: center;
 `
 
 class Block extends Component {
@@ -31,6 +32,7 @@ class Block extends Component {
 
         await api.getBlock(height).then(block => {
             this.setState({
+                timestamp: [block.data.data.timestamp] + 1508609968,
                 block: [block.data.data],
                 isLoading: false,
             })
@@ -45,22 +47,18 @@ class Block extends Component {
             {
                 Header: 'Block Height',
                 accessor: 'height',
-                filterable: true,
             },
             {
                 Header: 'Age',
                 accessor: 'timestamp',
-                filterable: true,
             },
             {
                 Header: 'Fee Reward',
                 accessor: 'totalFeeNQT',
-                filterable: true,
             },
             {
                 Header: 'Amount',
                 accessor: 'amountNQT',
-                filterable: true,
             },
             {
                 Header: 'Payload Hash',
