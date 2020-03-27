@@ -92,7 +92,7 @@ getBlockId = async (req, res) => {
 getBlocks = async (req, res) => {
 
     try {
-        const blocks = await Block.find().limit(500).sort({ height: -1 });
+        const blocks = await Block.find().sort({ height: -1 }).limit(500);
         if (!blocks.length) {
             return res
                 .status(404)

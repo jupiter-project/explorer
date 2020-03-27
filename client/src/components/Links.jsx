@@ -25,18 +25,8 @@ class Links extends Component {
                 <Collapse>
                     <List>
                         <Item>
-                            <Link to="/api/blocks" className="nav-link">
-                                Blocks
-                            </Link>
-                        </Item>
-                        <Item>
-                            <Link to="/api/block" className="nav-link">
-                                Block
-                            </Link>
-                        </Item>
-                        <Item>
-                            <Link to="/api/txs" className="nav-link">
-                                Transactions
+                            <Link to="/" className="nav-link">
+                                Current Blocks
                             </Link>
                         </Item>
                     </List>
