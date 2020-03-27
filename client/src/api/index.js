@@ -9,6 +9,7 @@ export const getBlocks = () => api.get(`/blocks`)
 export const updateBlock = (id, payload) => api.put(`/block/${id}`, payload)
 export const getBlock = id => api.get(`/block/${id}`)
 export const getTxs = () => api.get(`/txs`)
+export const getAccount = id => api.get(`/account`)
 
 const apis = {
     createBlock,
@@ -16,6 +17,7 @@ const apis = {
     getBlocks,
     getBlock,
     getTxs,
+    getAccount,
 }
 
 export default apis
