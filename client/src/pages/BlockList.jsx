@@ -47,7 +47,7 @@ class BlockList extends Component {
                 Cell: function(props) {
                     return (
                         <span>
-                            <Link to={`/block/${props.original.height}`}>{props.original.height}</Link>
+                            <Link to={`/api/block/${props.original.height}`}>{props.original.height}</Link>
                         </span>
                     )
                 },

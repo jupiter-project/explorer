@@ -25,7 +25,7 @@ class Block extends Component {
 
     componentDidMount = async () => {
         const { pathname } = this.props.location;
-        const height = pathname.replace('/block/', '');
+        const height = pathname.replace('/api/block/', '');
         this.setState({
             height,
         });
@@ -59,6 +59,12 @@ class Block extends Component {
             {
                 Header: 'Amount',
                 accessor: 'amountNQT',
+            },
+            {
+                Header: 'Transactions',
+                accessor: 'transactions',
+                Cell: props => <span>{props.value.join(', ')}</span>,
+                style: { 'whiteSpace': 'unset' }
             },
             {
                 Header: 'Generator',
