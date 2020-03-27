@@ -87,7 +87,7 @@ class BlockList extends Component {
                         data={blocks}
                         columns={columns}
                         loading={isLoading}
-                        defaultPageSize={25}
+                        defaultPageSize={10}
                         showPageSizeOptions={true}
                         minRows={0}                 
                     />
