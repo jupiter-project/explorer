@@ -1,6 +1,6 @@
 
 import BlockList from './BlockList'
-import BlockInsert from './BlockInsert'
-import BlockUpdate from './BlockUpdate'
+import TxList from './TxList'
+import Block from './Block'
 
-export { BlockList, BlockInsert, BlockUpdate }
+export { BlockList, TxList, Block }
