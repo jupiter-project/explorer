@@ -11,6 +11,7 @@ import 'react-table/react-table.css'
 const Wrapper = styled.div`
     padding: 0 40px 40px 40px;
     text-align: center;
+    font-size: 12px;
 `
 
 class BlockList extends Component {
@@ -46,7 +47,7 @@ class BlockList extends Component {
                 Cell: function(props) {
                     return (
                         <span>
-                            <Link to={`/api/block/${props.original.height}`}>{props.original.height}</Link>
+                            <Link to={`/block/${props.original.height}`}>{props.original.height}</Link>
                         </span>
                     )
                 },
@@ -67,7 +68,7 @@ class BlockList extends Component {
                 filterable: false,
             },
             {
-                Header: 'Transactions',
+                Header: '# of Transactions',
                 accessor: 'transactions.length',
                 filterable: false,
             },

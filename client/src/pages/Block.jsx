@@ -9,6 +9,7 @@ import 'react-table/react-table.css'
 const Wrapper = styled.div`
     padding: 0 40px 40px 40px;
     text-align: center;
+    font-size: 12px;
 `
 
 class Block extends Component {
@@ -24,7 +25,7 @@ class Block extends Component {
 
     componentDidMount = async () => {
         const { pathname } = this.props.location;
-        const height = pathname.replace('/api/block/', '');
+        const height = pathname.replace('/block/', '');
         this.setState({
             height,
         });
@@ -32,7 +33,6 @@ class Block extends Component {
 
         await api.getBlock(height).then(block => {
             this.setState({
-                timestamp: [block.data.data.timestamp] + 1508609968,
                 block: [block.data.data],
                 isLoading: false,
             })
@@ -59,6 +59,10 @@ class Block extends Component {
             {
                 Header: 'Amount',
                 accessor: 'amountNQT',
+            },
+            {
+                Header: 'Generator',
+                accessor: 'generatorRS',
             },
             {
                 Header: 'Payload Hash',
