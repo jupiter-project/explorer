@@ -42,7 +42,6 @@ class BlockList extends Component {
                 Header: 'Block Height',
                 accessor: 'height',
                 width: 90,
-                filterable: true,
                 Cell: function(props) {
                     return (
                         <span>
@@ -62,7 +61,6 @@ class BlockList extends Component {
                         </span>
                     )
                 },
-                filterable: false,
             },
             {
                 Header: 'Fees',
@@ -75,7 +73,6 @@ class BlockList extends Component {
                         </span>
                     )
                 },
-                filterable: false,
             },
             {
                 Header: 'Amount',
@@ -106,7 +103,7 @@ class BlockList extends Component {
                         </span>
                     )
                 },
-                filterable: true,
+                filterable: false,
             }
         ]
         let showTable = true
