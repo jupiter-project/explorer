@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import ReactTable from 'react-table'
 import api from '../api'
-import Moment from 'moment';
 import styled from 'styled-components'
 import { Link } from 'react-router-dom';
 import 'react-table/react-table.css'
