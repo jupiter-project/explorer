@@ -15,16 +15,22 @@ class TxList extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            txs: [],
+            transaction: '',
             columns: [],
             isLoading: false,
         }
     }
 
     componentDidMount = async () => {
+        const { pathname } = this.props.location;
+        const transaction = pathname.replace('/api/tx/', '');
+        this.setState({
+            transaction,
+        });
+
         this.setState({ isLoading: true })
 
-        await api.getTxs().then(txs => {
+        await api.getTxs(transaction).then(txs => {
             this.setState({
                 txs: txs.data.data,
                 isLoading: false,

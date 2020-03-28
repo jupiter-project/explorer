@@ -13,7 +13,8 @@ function App() {
             <Switch>
                 <Route path="/" exact component={BlockList} />
                 <Route path="/txs" exact component={TxList} />
-                <Route path="/account" exact component={Account} />
+                <Route path="/tx/:id" exact component={TxList} />
+                <Route path="/account/:id" exact component={Account} />
                 <Route path="/api/block/:id" exact component={Block} />
             </Switch>
         </Router>

@@ -13,11 +13,11 @@ recordAccount = (req, res) => {
 
     const account = new Account(body)
 
-    if (!tx) {
+    if (!account) {
         return res.status(400).json({ success: false, error: err })
     }
 
-    tx
+    account
         .save()
         .then(() => {
             return res.status(201).json({
@@ -75,7 +75,7 @@ updateAccount = async (req, res) => {
 }
 
 getAccount = async (req, res) => {
-    await Account.findOne({ transaction: req.params.id }, (err, account) => {
+    await Account.findOne({ accountRS: req.params.id }, (err, account) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }

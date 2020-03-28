@@ -5,6 +5,7 @@ const cors = require('cors')
 const db = require('./db')
 const blockRouter = require('./routes/block-router')
 const txRouter = require('./routes/tx-router')
+const accountRouter = require('./routes/account-router')
 
 const app = express()
 const apiPort = 3030
@@ -49,6 +50,6 @@ app.get('/', (req, res) => {
     }
   })
 })
-app.use('/api', blockRouter, txRouter)
+app.use('/api', blockRouter, txRouter, accountRouter)
 
 app.listen(apiPort, () => console.log(`Jupiter Explorer running on port ${apiPort}`))
