@@ -9,7 +9,7 @@ import styled from 'styled-components'
 import 'react-table/react-table.css'
 
 const Wrapper = styled.div`
-    padding: 0 40px 40px 40px;
+    padding: 2% 20% 10% 20%;
     text-align: center;
     font-size: 12px;
 `
@@ -49,10 +49,12 @@ class Block extends Component {
             {
                 Header: 'Block Height',
                 accessor: 'height',
+                width: 90,
             },
             {
                 Header: 'Date/Time Forged',
                 accessor: 'timestamp',
+                width: 275,
                 Cell: function(props) {
                     return (
                         <span>
@@ -64,6 +66,7 @@ class Block extends Component {
             {
                 Header: 'Fees',
                 accessor: 'totalFeeNQT',
+                width: 50,
                 Cell: function(props) {
                     return (
                         <span>
@@ -76,6 +79,7 @@ class Block extends Component {
             {
                 Header: 'Amount',
                 accessor: 'amountNQT',
+                width: 125,
                 Cell: function(props) {
                     return (
                         <span>
@@ -88,7 +92,7 @@ class Block extends Component {
             {
                 Header: 'Transactions',
                 accessor: 'transactions',
-//                Cell: props => <span>{props.value.join(', ') || 'None'}</span>,
+                width: 150,
                 Cell: function(props) {
                     return (
                         <span>
@@ -101,6 +105,7 @@ class Block extends Component {
             {
                 Header: 'Generator',
                 accessor: 'generatorRS',
+                width: 200,
                 Cell: function(props) {
                     return (
                         <span>

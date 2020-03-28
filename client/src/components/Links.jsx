@@ -26,7 +26,22 @@ class Links extends Component {
                     <List>
                         <Item>
                             <Link to="/" className="nav-link">
-                                Current Blocks
+                                Latest Blocks
+                            </Link>
+                        </Item>
+                        <Item>
+                            <Link to="/api/generators" className="nav-link">
+                                Generators
+                            </Link>
+                        </Item>
+                        <Item>
+                            <Link to="/api/peers" className="nav-link">
+                                Peers
+                            </Link>
+                        </Item>
+                        <Item>
+                            <Link to="/metis" className="nav-link">
+                                Metis
                             </Link>
                         </Item>
                     </List>

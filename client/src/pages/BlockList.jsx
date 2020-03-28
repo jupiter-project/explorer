@@ -7,7 +7,7 @@ import 'react-table/react-table.css'
 import Moment from 'moment';
 
 const Wrapper = styled.div`
-    padding: 0 40px 40px 40px;
+    padding: 2% 20% 10% 20%;
     text-align: center;
     font-size: 12px;
 `
@@ -41,6 +41,7 @@ class BlockList extends Component {
             {
                 Header: 'Block Height',
                 accessor: 'height',
+                width: 90,
                 filterable: true,
                 Cell: function(props) {
                     return (
@@ -53,6 +54,7 @@ class BlockList extends Component {
             {
                 Header: 'Date/Time Forged',
                 accessor: 'timestamp',
+                width: 275,
                 Cell: function(props) {
                     return (
                         <span>
@@ -65,6 +67,7 @@ class BlockList extends Component {
             {
                 Header: 'Fees',
                 accessor: 'totalFeeNQT',
+                width: 50,
                 Cell: function(props) {
                     return (
                         <span>
@@ -77,6 +80,7 @@ class BlockList extends Component {
             {
                 Header: 'Amount',
                 accessor: 'amountNQT',
+                width: 125,
                 Cell: function(props) {
                     return (
                         <span>
@@ -87,8 +91,9 @@ class BlockList extends Component {
                 filterable: false,
             },
             {
-                Header: '# of Transactions',
+                Header: '# of Txs',
                 accessor: 'transactions.length',
+                width: 75,
                 filterable: false,
             },
             {
@@ -116,7 +121,7 @@ class BlockList extends Component {
                         data={blocks}
                         columns={columns}
                         loading={isLoading}
-                        defaultPageSize={10}
+                        defaultPageSize={20}
                         showPageSizeOptions={true}
                         minRows={0}                 
                     />

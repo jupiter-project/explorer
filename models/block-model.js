@@ -19,7 +19,7 @@ const Block = new Schema(
         transactions: { type: [String], required: false },
         version: { type: Number, required: true },
         totalFeeNQT: { type: String, required: true },
-        previousBlock: { type: String, required: true },
+        previousBlock: { type: String, required: false },
         cumulativeDifficulty: { type: String, required: true },
         block: { index: true, type: String, required: false, unique: true },
         height: { index: true, type: Number, required: true },

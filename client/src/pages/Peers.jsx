@@ -12,59 +12,49 @@ const Wrapper = styled.div`
     font-size: 12px;
 `
 
-class Account extends Component {
+class Peer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            accountFind: '',
-            account: '',
+            peer: '',
             columns: [],
             isLoading: false,
         }
     }
 
     componentDidMount = async () => {
-        const { pathname } = this.props.location;
-        const accountFind = pathname.replace('/api/account/', '');
-        this.setState({
-            accountFind,
-        });
         this.setState({ isLoading: true })
 
-        await api.getAccount(accountFind).then(account => {
+        await api.getPeers().then(peer => {
             this.setState({
-                account: [account.data.data],
+                peer: peer.data.data,
                 isLoading: false,
             })
         })
     }
 
     render() {
-        const { account, isLoading } = this.state
-        console.log('TCL: Account -> render -> account', account)
+        const { peer, isLoading } = this.state
+        console.log('TCL: Peer -> render -> peer', peer)
 
         const columns = [
             {
-                Header: 'Account',
-                accessor: 'accountRS',
-                width: '50%',
-            },
-            {
-                Header: 'Balance',
-                accessor: 'balanceNQT',
-                width: '50%',
+                Header: 'Peer Address',
+                accessor: 'peers',
+                width: 200,
                 Cell: function(props) {
                     return (
                         <span>
-                            {props.original.balanceNQT/100000000 || 0} JUP
+                            {props.value.join(', ') || 'None'}
                         </span>
                     )
                 },
+                style: { 'whiteSpace': 'unset' }
             },
         ]
 
         let showTable = true
-        if (!account.length) {
+        if (!peer.length) {
             showTable = false
         }
 
@@ -72,7 +62,7 @@ class Account extends Component {
             <Wrapper>
                 {showTable && (
                     <ReactTable
-                        data={account}
+                        data={peer}
                         columns={columns}
                         loading={isLoading}
                         defaultPageSize={1}
@@ -80,21 +70,9 @@ class Account extends Component {
                         minRows={0}
                     />
                 )}
-
-{/* For future Account Transactions
-                {showTable && (
-                    <ReactTable
-                        data={account}
-                        columns={columns}
-                        loading={isLoading}
-                        defaultPageSize={1}
-                        showPageSizeOptions={true}
-                        minRows={0}
-                    />
-                )} */}
             </Wrapper>
         )
     }
 }
 
-export default Account
+export default Peer

@@ -106,6 +106,6 @@ getTxs = async (req, res) => {
 module.exports = {
     createTx,
     updateTx,
-    getTxs,
     getTxId,
+    getTxs,
 }
