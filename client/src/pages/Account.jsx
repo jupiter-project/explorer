@@ -15,9 +15,7 @@ class Account extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            balanceNQT: '',
-            accountRS: '',
-            transactions: [],
+            account: '',
             columns: [],
             isLoading: false,
         }
@@ -25,15 +23,16 @@ class Account extends Component {
 
     componentDidMount = async () => {
         const { pathname } = this.props.location;
-        const accountRS = pathname.replace('/address/', '');
+        const account = pathname.replace('/api/account/', '');
+console.log(account)
         this.setState({
-            accountRS,
+            account,
         });
         this.setState({ isLoading: true })
 
-        await api.getAccount(accountRS).then(account => {
+        await api.getAccount(account).then(account => {
             this.setState({
-                account: [account.data.data],
+                generatorRS: [account.data.data],
                 isLoading: false,
             })
         })

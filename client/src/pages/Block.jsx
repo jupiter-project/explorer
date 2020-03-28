@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
 import ReactTable from 'react-table'
 import api from '../api'
+import Moment from 'moment'
 
 import styled from 'styled-components'
 
@@ -49,26 +51,63 @@ class Block extends Component {
                 accessor: 'height',
             },
             {
-                Header: 'Age',
+                Header: 'Date/Time Forged',
                 accessor: 'timestamp',
+                Cell: function(props) {
+                    return (
+                        <span>
+                            {Moment.unix(props.original.timestamp + 1508609968).utcOffset('+0500').format('dddd, MMMM Do, YYYY h:mm:ss UTC')}
+                        </span>
+                    )
+                },
             },
             {
-                Header: 'Fee Reward',
+                Header: 'Fees',
                 accessor: 'totalFeeNQT',
+                Cell: function(props) {
+                    return (
+                        <span>
+                            {props.original.totalFeeNQT/100000000 || 0} JUP
+                        </span>
+                    )
+                },
+                filterable: false,
             },
             {
                 Header: 'Amount',
                 accessor: 'amountNQT',
+                Cell: function(props) {
+                    return (
+                        <span>
+                            {props.original.amountNQT/100000000 || 0} JUP
+                        </span>
+                    )
+                },
+                filterable: false,
             },
             {
                 Header: 'Transactions',
                 accessor: 'transactions',
-                Cell: props => <span>{props.value.join(', ')}</span>,
+//                Cell: props => <span>{props.value.join(', ') || 'None'}</span>,
+                Cell: function(props) {
+                    return (
+                        <span>
+                            <Link to={`/api/tx/${props.original.transactions}`}>{props.value.join(', ') || 'None'}</Link>
+                        </span>
+                    )
+                },
                 style: { 'whiteSpace': 'unset' }
             },
             {
                 Header: 'Generator',
                 accessor: 'generatorRS',
+                Cell: function(props) {
+                    return (
+                        <span>
+                            <Link to={`/api/account/${props.original.generatorRS}`}>{props.original.generatorRS}</Link>
+                        </span>
+                    )
+                },
             },
             {
                 Header: 'Payload Hash',
