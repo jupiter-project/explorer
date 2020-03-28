@@ -94,9 +94,16 @@ class Block extends Component {
                 accessor: 'transactions',
                 width: 150,
                 Cell: function(props) {
+                    const { transactions } = props.original || { transactions: [] };
                     return (
                         <span>
-                            <Link to={`/api/tx/${props.original.transactions}`}>{props.value.join(', ') || 'None'}</Link>
+                            {
+                            transactions.map((id) => (
+                                <span key={id}>
+                                    <Link to={`/api/tx/${id}`}>{id}</Link><br />
+                                </span>
+                            ))
+                            }
                         </span>
                     )
                 },
