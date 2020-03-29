@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
-import { NavBar } from '../components'
+import { NavBar, FooterNavArea } from '../components'
 import { BlockList, TxList, Block, Account, Peers } from '../pages'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -18,6 +18,7 @@ function App() {
                 <Route path="/api/account/:id" exact component={Account} />
                 <Route path="/api/block/:id" exact component={Block} />
             </Switch>
+            <FooterNavArea />
         </Router>
     )
 }
