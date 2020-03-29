@@ -12,11 +12,11 @@ const Wrapper = styled.div`
     font-size: 12px;
 `
 
-class Peer extends Component {
+class Generators extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            peerData: '',
+            generatorData: '',
             columns: [],
             isLoading: false,
         }
@@ -25,28 +25,35 @@ class Peer extends Component {
     componentDidMount = async () => {
         this.setState({ isLoading: true })
 
-        await api.getPeers().then(peerData => {
+        await api.getGenerators().then(generatorData => {
             this.setState({
-                peerData: peerData.data.data,
+                generatorData: generatorData.data.data,
                 isLoading: false,
             })
         })
     }
 
     render() {
-        const { peerData, isLoading } = this.state
-        console.log('TCL: Peer -> render -> peer', peerData)
+        const { generatorData, isLoading } = this.state
+        console.log('TCL: Generator -> render -> generator', generatorData)
 
         const columns = [
             {
-                Header: 'Peer Address',
-                accessor: 'address',
+                Header: 'Forger Address',
+                accessor: 'accountRS',
                 width: 200,
+                // Cell: function(props) {
+                //     return (
+                //         <span>
+                //             {props.original.peers[0]}
+                //         </span>
+                //     )
+                // },
             },
         ]
 
         let showTable = true
-        if (!peerData.length) {
+        if (!generatorData.length) {
             showTable = false
         }
 
@@ -54,7 +61,7 @@ class Peer extends Component {
             <Wrapper>
                 {showTable && (
                     <ReactTable
-                        data={peerData}
+                        data={generatorData}
                         columns={columns}
                         loading={isLoading}
                         defaultPageSize={1}
@@ -67,4 +74,4 @@ class Peer extends Component {
     }
 }
 
-export default Peer
+export default Generators

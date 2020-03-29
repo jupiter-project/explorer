@@ -41,7 +41,6 @@ class TxList extends Component {
 
     render() {
         const { trxs, isLoading } = this.state
-        console.log('TCL: TxList -> render -> trxs', trxs)
 
         const columns = [
             {
@@ -102,7 +101,6 @@ class TxList extends Component {
             {
                 Header: 'Amount',
                 accessor: 'amountNQT',
-                width: 125,
                 Cell: function(props) {
                     return (
                         <span>

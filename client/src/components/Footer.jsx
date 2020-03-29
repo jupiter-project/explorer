@@ -12,7 +12,8 @@ class FooterNavArea extends Component {
         return (
             <div className="fixed-bottom">
             <Wrapper>
-                <span>version 0.3 Made with 🧡 by Sigwo Technologies ©️ 2020</span>
+                <span>version 0.3 Made with <span role="img" aria-labelledby="orangeHeart">🧡</span> 
+                by Sigwo Technologies <span role="img" aria-labelledby="copyright">©️</span> 2020</span>
             </Wrapper>
             </div>
         )

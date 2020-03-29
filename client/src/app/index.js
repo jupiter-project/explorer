@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import { NavBar, FooterNavArea } from '../components'
-import { BlockList, TxList, Block, Account, Peers } from '../pages'
+import { BlockList, TxList, Block, Account, Peers, Generators } from '../pages'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -17,6 +17,7 @@ function App() {
                 <Route path="/txs" exact component={TxList} />
                 <Route path="/api/account/:id" exact component={Account} />
                 <Route path="/api/block/:id" exact component={Block} />
+                <Route path="/api/generators" exact component={Generators} />
             </Switch>
             <FooterNavArea />
         </Router>

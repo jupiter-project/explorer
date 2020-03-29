@@ -41,7 +41,6 @@ class Account extends Component {
 
     render() {
         const { account, isLoading } = this.state
-        console.log('TCL: Account -> render -> account', account)
 
         const columns = [
             {

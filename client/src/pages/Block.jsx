@@ -43,7 +43,6 @@ class Block extends Component {
 
     render() {
         const { block, isLoading } = this.state
-        console.log('TCL: Block -> render -> block', block)
 
         const columns = [
             {

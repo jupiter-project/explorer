@@ -13,6 +13,8 @@ export const getTx = id => api.get(`/tx/${id}`)
 export const getAccount = id => api.get(`/account/${id}`)
 export const recordPeer = payload => api.post(`/peer`, payload)
 export const getPeers = () => api.get(`/peers`)
+export const recordGenerator = payload => api.post(`/generator`, payload)
+export const getGenerators = () => api.get(`/generators`)
 
 const apis = {
     createBlock,
@@ -24,6 +26,8 @@ const apis = {
     getAccount,
     recordPeer,
     getPeers,
+    recordGenerator,
+    getGenerators,
 }
 
 export default apis

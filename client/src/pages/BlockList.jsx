@@ -35,7 +35,6 @@ class BlockList extends Component {
 
     render() {
         const { blocks, isLoading } = this.state
-        console.log('TCL: BlockList -> render -> blocks', blocks)
 
         const columns = [
             {
