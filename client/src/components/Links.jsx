@@ -20,7 +20,7 @@ class Links extends Component {
         return (
             <React.Fragment>
                 <Link to="/" className="navbar-brand">
-                    Jupiter Explorer v0.3
+                    Jupiter Explorer
                 </Link>
                 <Collapse>
                     <List>
