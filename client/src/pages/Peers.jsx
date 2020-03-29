@@ -43,6 +43,26 @@ class Peer extends Component {
                 accessor: 'address',
                 width: 200,
             },
+            {
+                Header: 'Application',
+                accessor: 'application',
+                width: 200,
+            },
+            {
+                Header: 'Version',
+                accessor: 'version',
+                width: 200,
+            },
+            {
+                Header: 'Services',
+                accessor: 'services',
+                width: 200,
+            },
+            {
+                Header: 'Platform',
+                accessor: 'platform',
+                width: 200,
+            },
         ]
 
         let showTable = true

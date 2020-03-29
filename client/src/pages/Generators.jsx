@@ -42,13 +42,21 @@ class Generators extends Component {
                 Header: 'Forger Address',
                 accessor: 'accountRS',
                 width: 200,
-                // Cell: function(props) {
-                //     return (
-                //         <span>
-                //             {props.original.peers[0]}
-                //         </span>
-                //     )
-                // },
+            },
+            {
+                Header: 'Effective Balance',
+                accessor: 'effectiveBalanceNXT',
+                width: 200,
+            },
+            {
+                Header: 'Deadline',
+                accessor: 'deadline',
+                width: 200,
+            },
+            {
+                Header: 'Hit Time',
+                accessor: 'hitTime',
+                width: 200,
             },
         ]
 
