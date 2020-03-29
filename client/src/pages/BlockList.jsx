@@ -7,7 +7,7 @@ import 'react-table/react-table.css'
 import Moment from 'moment';
 
 const Wrapper = styled.div`
-    padding: 2% 20% 10% 20%;
+    padding: 2% 20% 0% 20%;
     text-align: center;
     font-size: 12px;
 `
