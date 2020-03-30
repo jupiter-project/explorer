@@ -6,6 +6,7 @@ const Block = new Schema(
         previousBlockHash: { type: String, required: true },
         payloadLength: { type: String, required: true },
         totalAmountNQT: { type: String, required: true },
+        amountNQT: { type: String, required: false },
         generationSignature: { type: String, required: true },
         generator: { type: String, required: true },
         generatorPublicKey: { type: String, required: true },
