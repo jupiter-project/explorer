@@ -80,7 +80,7 @@ class BlockList extends Component {
                 Cell: function(props) {
                     return (
                         <span>
-                            {props.original.amountNQT/100000000 || 0} JUP
+                            {props.original.totalAmountNQT/100000000 || 0} JUP
                         </span>
                     )
                 },
