@@ -15,6 +15,11 @@ export const recordPeer = payload => api.post(`/peer`, payload)
 export const getPeers = () => api.get(`/peers`)
 export const recordGenerator = payload => api.post(`/generator`, payload)
 export const getGenerators = () => api.get(`/generators`)
+export const getLastBlock = () =>  api.get(`/blocks/last`)
+export const getMaxSupply = () =>  api.get(`/utils/maxsupply`)
+export const getSupply = () =>  api.get(`/utils/supply`)
+export const getCirculatingSupply = () =>  api.get(`/utils/circulatingsupply`)
+export const saveMaxSupply = payload => api.post(`/utils/savemaxsupply/`, payload)
 
 const apis = {
     createBlock,
@@ -28,6 +33,11 @@ const apis = {
     getPeers,
     recordGenerator,
     getGenerators,
+    getLastBlock,
+    getMaxSupply,
+    getSupply,
+    getCirculatingSupply,
+    saveMaxSupply,
 }
 
 export default apis

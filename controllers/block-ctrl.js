@@ -92,7 +92,24 @@ getBlockId = async (req, res) => {
 getBlocks = async (req, res) => {
 
     try {
-        const blocks = await Block.find().sort({ height: -1 }).limit(100);
+        const blocks = await Block.find().sort({ height: -1 }).limit(250);
+        if (!blocks.length) {
+            return res
+                .status(404)
+                .json({ success: false, error: `Block not found` })
+        }
+
+        return res.status(200).json({ success: true, data: blocks, test: 'This is the correct method' })
+    } catch (e) {
+        console.log(err)
+        return res.status(500).json({ success: false, error: err });
+    }
+}
+
+getLastBlock = async (req, res) => {
+
+    try {
+        const blocks = await Block.find().sort({ height: -1 }).limit(1);
         if (!blocks.length) {
             return res
                 .status(404)
@@ -111,4 +128,5 @@ module.exports = {
     updateBlock,
     getBlocks,
     getBlockId,
+    getLastBlock,
 }

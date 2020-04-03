@@ -40,9 +40,14 @@ class Links extends Component {
                             </Link>
                         </Item>
                         <Item>
-                            <Link to="/metis" className="nav-link">
+                            <a href="https://metis.gojupiter.tech" className="nav-link">
                                 Metis
-                            </Link>
+                            </a>
+                        </Item>
+                        <Item>
+                            <a href="https://nomics.com/assets/jup-jupiter" className="nav-link">
+                                Nomics Data
+                            </a>
                         </Item>
                     </List>
                 </Collapse>
