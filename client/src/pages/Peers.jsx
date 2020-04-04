@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ReactTable from 'react-table'
 import api from '../api'
+// import { Link } from 'react-router-dom';
 
 import styled from 'styled-components'
 
@@ -27,7 +28,7 @@ class Peer extends Component {
 
         await api.getPeers().then(peerData => {
             this.setState({
-                peerData: peerData.data.data,
+                peerData: peerData.data.data[0].peers,
                 isLoading: false,
             })
         })
@@ -44,24 +45,30 @@ class Peer extends Component {
                 width: 200,
             },
             {
-                Header: 'Application',
-                accessor: 'application',
-                width: 200,
-            },
-            {
                 Header: 'Version',
                 accessor: 'version',
+                width: 75,
+            },
+            {
+                Header: 'Application',
+                accessor: 'application',
+                width: 75,
+            },
+            {
+                Header: 'Platform',
+                accessor: 'platform',
+                width: 175,
+            },
+            {
+                Header: 'Announced Address',
+                accessor: 'announcedAddress',
                 width: 200,
             },
             {
                 Header: 'Services',
                 accessor: 'services',
-                width: 200,
-            },
-            {
-                Header: 'Platform',
-                accessor: 'platform',
-                width: 200,
+                width: 250,
+                Cell: props => <span>{props.value.join(', ')}</span>,
             },
         ]
 
@@ -77,7 +84,7 @@ class Peer extends Component {
                         data={peerData}
                         columns={columns}
                         loading={isLoading}
-                        defaultPageSize={1}
+                        defaultPageSize={20}
                         showPageSizeOptions={true}
                         minRows={0}
                     />

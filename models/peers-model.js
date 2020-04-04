@@ -12,6 +12,7 @@ const Peer = new Schema(
             application: { type: String, required: true },
             state: { type: Boolean, required: false },
             platform: { type: String, required: true },
+            announcedAddress: { type: String, required: false },
         }]
     })
 

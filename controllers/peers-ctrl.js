@@ -16,16 +16,15 @@ recordPeer = (req, res) => {
     if (!body) {
         return res.status(400).json({ success: false, error: err })
     }
-
     peer
         .save()
         .then(() => {
-            return res.status(201).json({
-                success: true,
-                id: peer._id,
-                peer: peer.peers,
-                message: 'Peer info stored!',
-            })
+                return res.status(201).json({
+                    success: true,
+                    id: peer._id,
+                    peer: peer.peers[0],
+                    message: 'Peer info stored!',
+                })
         })
         .catch(error => {
             return res.status(400).json({
@@ -44,8 +43,10 @@ getPeers = async (req, res) => {
                 .status(404)
                 .json({ success: false, error: `Peers not found` })
         }
-
-        return res.status(200).json({ success: true, data: peers, test: 'This is the correct method' })
+        console.log(peers.application)
+        if(peers.application != "NRS") {
+            return res.status(200).json({ success: true, data: peers, test: 'This is the correct method' })
+        }
     } catch (e) {
         console.log(err)
         return res.status(500).json({ success: false, error: err });
@@ -72,3 +73,7 @@ module.exports = {
     getPeers,
     getPeer,
 }
+function newFunction(peer) {
+    console.log(peer.peers.application)
+}
+

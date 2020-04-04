@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ReactTable from 'react-table'
 import api from '../api'
-
+import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 
 import 'react-table/react-table.css'
@@ -27,7 +27,7 @@ class Generators extends Component {
 
         await api.getGenerators().then(generatorData => {
             this.setState({
-                generatorData: generatorData.data.data,
+                generatorData: generatorData.data.data[0].generators,
                 isLoading: false,
             })
         })
@@ -42,11 +42,25 @@ class Generators extends Component {
                 Header: 'Forger Address',
                 accessor: 'accountRS',
                 width: 200,
+                Cell: function(props) {
+                    return (
+                        <span>
+                            <Link to={`/api/account/${props.original.accountRS}`}>{props.original.accountRS}</Link>
+                        </span>
+                    )
+                },
             },
             {
                 Header: 'Effective Balance',
                 accessor: 'effectiveBalanceNXT',
                 width: 200,
+                Cell: function(props) {
+                    return (
+                        <span>
+                            {Number(props.original.effectiveBalanceNXT).toFixed(8) || 0} JUP
+                        </span>
+                    )
+                },
             },
             {
                 Header: 'Deadline',
@@ -72,7 +86,7 @@ class Generators extends Component {
                         data={generatorData}
                         columns={columns}
                         loading={isLoading}
-                        defaultPageSize={1}
+                        defaultPageSize={20}
                         showPageSizeOptions={true}
                         minRows={0}
                     />
