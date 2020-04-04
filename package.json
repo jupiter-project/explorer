@@ -1,6 +1,6 @@
 {
-  "name": "server",
-  "version": "1.0.0",
+  "name": "jupiter-blockchain-explorer",
+  "version": "0.5.0",
   "description": "Jupiter blockchain explorer.",
   "main": "index.js",
   "scripts": {

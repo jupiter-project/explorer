@@ -88,11 +88,11 @@ class TxList extends Component {
             {
                 Header: 'Fees',
                 accessor: 'feeNQT',
-                width: 50,
+                width: 125,
                 Cell: function(props) {
                     return (
                         <span>
-                            {props.original.feeNQT/100000000 || 0} JUP
+                            {Number(props.original.feeNQT/100000000).toFixed(8) || 0} JUP
                         </span>
                     )
                 },
@@ -104,7 +104,7 @@ class TxList extends Component {
                 Cell: function(props) {
                     return (
                         <span>
-                            {props.original.amountNQT/100000000 || 0} JUP
+                            {Number(props.original.amountNQT/100000000).toFixed(8) || 0} JUP
                         </span>
                     )
                 },

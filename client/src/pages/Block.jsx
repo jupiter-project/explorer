@@ -65,11 +65,11 @@ class Block extends Component {
             {
                 Header: 'Fees',
                 accessor: 'totalFeeNQT',
-                width: 50,
+                width: 125,
                 Cell: function(props) {
                     return (
                         <span>
-                            {props.original.totalFeeNQT/100000000 || 0} JUP
+                            {Number(props.original.totalFeeNQT/100000000).toFixed(8) || 0} JUP
                         </span>
                     )
                 },
@@ -82,7 +82,7 @@ class Block extends Component {
                 Cell: function(props) {
                     return (
                         <span>
-                            {props.original.totalAmountNQT/100000000 || 0} JUP
+                            {Number(props.original.totalAmountNQT/100000000).toFixed(8) || 0} JUP
                         </span>
                     )
                 },
@@ -121,8 +121,8 @@ class Block extends Component {
                 },
             },
             {
-                Header: 'Payload Hash',
-                accessor: 'block',
+                Header: 'Payload Size (kb)',
+                accessor: 'payloadLength',
             },
         ]
 
