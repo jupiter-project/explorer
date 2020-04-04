@@ -6,6 +6,9 @@ const db = require('./db')
 const blockRouter = require('./routes/block-router')
 const txRouter = require('./routes/tx-router')
 const accountRouter = require('./routes/account-router')
+const peerRouter = require('./routes/peers-router')
+const generatorRouter = require('./routes/generators-router')
+const utilsRouter = require('./routes/utils-router')
 
 const app = express()
 const apiPort = 3030
@@ -50,6 +53,6 @@ app.get('/', (req, res) => {
     }
   })
 })
-app.use('/api', blockRouter, txRouter, accountRouter)
+app.use('/api', blockRouter, txRouter, accountRouter, peerRouter, generatorRouter, utilsRouter)
 
 app.listen(apiPort, () => console.log(`Jupiter Explorer running on port ${apiPort}`))

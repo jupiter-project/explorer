@@ -1,21 +1,22 @@
 import React, { Component } from 'react'
 import ReactTable from 'react-table'
 import api from '../api'
-
 import styled from 'styled-components'
-
+import { Link } from 'react-router-dom';
 import 'react-table/react-table.css'
 
 const Wrapper = styled.div`
-    padding: 0 40px 40px 40px;
+    padding: 2% 20% 10% 20%;
     text-align: center;
+    font-size: 12px;
 `
 
 class TxList extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            transaction: '',
+            transactionFind: '',
+            trxs: '',
             columns: [],
             isLoading: false,
         }
@@ -23,54 +24,95 @@ class TxList extends Component {
 
     componentDidMount = async () => {
         const { pathname } = this.props.location;
-        const transaction = pathname.replace('/api/tx/', '');
+        const transactionFind = pathname.replace('/api/tx/', '');
         this.setState({
-            transaction,
+            transactionFind,
         });
 
         this.setState({ isLoading: true })
 
-        await api.getTxs(transaction).then(txs => {
+        await api.getTx(transactionFind).then(trxs => {
             this.setState({
-                txs: txs.data.data,
+                trxs: [trxs.data.data],
                 isLoading: false,
             })
         })
     }
 
     render() {
-        const { txs, isLoading } = this.state
-        console.log('TCL: TxList -> render -> txs', txs)
+        const { trxs, isLoading } = this.state
 
         const columns = [
             {
                 Header: 'Block Height',
                 accessor: 'height',
+                width: 90,
+                Cell: function(props) {
+                    return (
+                        <span>
+                            <Link to={`/api/block/${props.original.height}`}>{props.original.height}</Link>
+                        </span>
+                    )
+                },
             },
             {
                 Header: 'Sender',
                 accessor: 'senderRS',
+                width: 200,
+                Cell: function(props) {
+                    return (
+                        <span>
+                            <Link to={`/api/account/${props.original.senderRS}`}>{props.original.senderRS}</Link>
+                        </span>
+                    )
+                },
             },
             {
                 Header: 'Recipient',
                 accessor: 'recipientRS',
+                width: 200,
+                Cell: function(props) {
+                    return (
+                        <span>
+                            <Link to={`/api/account/${props.original.recipientRS}`}>{props.original.recipientRS}</Link>
+                        </span>
+                    )
+                },
             },
             {
                 Header: 'Message',
                 accessor: 'attachment.message',
+                width: 300,
+                style: { 'whiteSpace': 'unset' },
             },
             {
                 Header: 'Fees',
                 accessor: 'feeNQT',
+                width: 125,
+                Cell: function(props) {
+                    return (
+                        <span>
+                            {Number(props.original.feeNQT/100000000).toFixed(8) || 0} JUP
+                        </span>
+                    )
+                },
+
             },
             {
                 Header: 'Amount',
                 accessor: 'amountNQT',
+                Cell: function(props) {
+                    return (
+                        <span>
+                            {Number(props.original.amountNQT/100000000).toFixed(8) || 0} JUP
+                        </span>
+                    )
+                },
             },
         ]
 
         let showTable = true
-        if (!txs.length) {
+        if (!trxs.length) {
             showTable = false
         }
 
@@ -78,7 +120,7 @@ class TxList extends Component {
             <Wrapper>
                 {showTable && (
                     <ReactTable
-                        data={txs}
+                        data={trxs}
                         columns={columns}
                         loading={isLoading}
                         defaultPageSize={10}

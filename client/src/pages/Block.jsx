@@ -9,7 +9,7 @@ import styled from 'styled-components'
 import 'react-table/react-table.css'
 
 const Wrapper = styled.div`
-    padding: 0 40px 40px 40px;
+    padding: 2% 20% 10% 20%;
     text-align: center;
     font-size: 12px;
 `
@@ -43,16 +43,17 @@ class Block extends Component {
 
     render() {
         const { block, isLoading } = this.state
-        console.log('TCL: Block -> render -> block', block)
 
         const columns = [
             {
                 Header: 'Block Height',
                 accessor: 'height',
+                width: 90,
             },
             {
                 Header: 'Date/Time Forged',
                 accessor: 'timestamp',
+                width: 275,
                 Cell: function(props) {
                     return (
                         <span>
@@ -64,10 +65,11 @@ class Block extends Component {
             {
                 Header: 'Fees',
                 accessor: 'totalFeeNQT',
+                width: 125,
                 Cell: function(props) {
                     return (
                         <span>
-                            {props.original.totalFeeNQT/100000000 || 0} JUP
+                            {Number(props.original.totalFeeNQT/100000000).toFixed(8) || 0} JUP
                         </span>
                     )
                 },
@@ -76,10 +78,11 @@ class Block extends Component {
             {
                 Header: 'Amount',
                 accessor: 'amountNQT',
+                width: 125,
                 Cell: function(props) {
                     return (
                         <span>
-                            {props.original.amountNQT/100000000 || 0} JUP
+                            {Number(props.original.totalAmountNQT/100000000).toFixed(8) || 0} JUP
                         </span>
                     )
                 },
@@ -88,11 +91,18 @@ class Block extends Component {
             {
                 Header: 'Transactions',
                 accessor: 'transactions',
-//                Cell: props => <span>{props.value.join(', ') || 'None'}</span>,
+                width: 150,
                 Cell: function(props) {
+                    const { transactions } = props.original || { transactions: [] };
                     return (
                         <span>
-                            <Link to={`/api/tx/${props.original.transactions}`}>{props.value.join(', ') || 'None'}</Link>
+                            {
+                            transactions.map((id) => (
+                                <span key={id}>
+                                    <Link to={`/api/tx/${id}`}>{id}</Link><br />
+                                </span>
+                            ))
+                            }
                         </span>
                     )
                 },
@@ -101,6 +111,7 @@ class Block extends Component {
             {
                 Header: 'Generator',
                 accessor: 'generatorRS',
+                width: 200,
                 Cell: function(props) {
                     return (
                         <span>
@@ -110,8 +121,8 @@ class Block extends Component {
                 },
             },
             {
-                Header: 'Payload Hash',
-                accessor: 'block',
+                Header: 'Payload Size (kb)',
+                accessor: 'payloadLength',
             },
         ]
 

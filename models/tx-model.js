@@ -29,7 +29,7 @@ const Tx = new Schema(
         sender: { type: String, required: true },
         recipient: { type: String, required: false },
         ecBlockHeight: { type: Number, required: true },
-        transactions: { type: String, required: false },
+        transaction: { index: true, type: String, required: false, unique: true },
         block: { index: true, type: String, required: false },
         height: { index: true, type: Number, required: true },
         timestamp: { type: Number, required: true },

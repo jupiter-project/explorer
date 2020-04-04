@@ -1,5 +1,4 @@
 const Account = require('../models/account-model')
-const request = require('request')
 
 recordAccount = (req, res) => {
     const body = req.body
@@ -45,23 +44,28 @@ updateAccount = async (req, res) => {
         })
     }
 
-    Account.findOne({ account: req.params.id }, (err, account) => {
-        if (err) {
+    await Account.findOne({ accountRS: req.params.id }, (error, account) => {
+        if (error) {
             return res.status(404).json({
-                err,
                 message: 'Account not found!',
             })
         }
-        account.signature = body.signature
-        account.type = body.type
+        if (account == null) {
+            return res.status(200).json({
+                success: true,
+                message: 'Done!',
+            })
+        }
+        account.balanceNQT = body.balanceNQT
+        account.forgedBalanceNQT = body.forgedBalanceNQT
         account.accountRS = body.accountRS
         account
             .save()
             .then(() => {
                 return res.status(200).json({
                     success: true,
-                    id: account.accountRS,
-                    account: account.balanceNQT,
+                    id: account._id,
+                    account: account.accountRS,
                     message: 'Account updated!',
                 })
             })

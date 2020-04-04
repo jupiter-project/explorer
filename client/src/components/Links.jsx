@@ -20,14 +20,34 @@ class Links extends Component {
         return (
             <React.Fragment>
                 <Link to="/" className="navbar-brand">
-                    Jupiter Explorer v0.3
+                    Jupiter Explorer
                 </Link>
                 <Collapse>
                     <List>
                         <Item>
                             <Link to="/" className="nav-link">
-                                Current Blocks
+                                Latest Blocks
                             </Link>
+                        </Item>
+                        <Item>
+                            <Link to="/api/generators" className="nav-link">
+                                Generators
+                            </Link>
+                        </Item>
+                        <Item>
+                            <Link to="/api/peers" className="nav-link">
+                                Peers
+                            </Link>
+                        </Item>
+                        <Item>
+                            <a href="https://metis.gojupiter.tech" className="nav-link">
+                                Metis
+                            </a>
+                        </Item>
+                        <Item>
+                            <a href="https://nomics.com/assets/jup-jupiter" className="nav-link">
+                                Nomics Data
+                            </a>
                         </Item>
                     </List>
                 </Collapse>

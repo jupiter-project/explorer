@@ -7,7 +7,7 @@ import 'react-table/react-table.css'
 import Moment from 'moment';
 
 const Wrapper = styled.div`
-    padding: 0 40px 40px 40px;
+    padding: 2% 20% 0% 20%;
     text-align: center;
     font-size: 12px;
 `
@@ -35,13 +35,12 @@ class BlockList extends Component {
 
     render() {
         const { blocks, isLoading } = this.state
-        console.log('TCL: BlockList -> render -> blocks', blocks)
 
         const columns = [
             {
                 Header: 'Block Height',
                 accessor: 'height',
-                filterable: true,
+                width: 90,
                 Cell: function(props) {
                     return (
                         <span>
@@ -53,6 +52,7 @@ class BlockList extends Component {
             {
                 Header: 'Date/Time Forged',
                 accessor: 'timestamp',
+                width: 275,
                 Cell: function(props) {
                     return (
                         <span>
@@ -60,35 +60,36 @@ class BlockList extends Component {
                         </span>
                     )
                 },
-                filterable: false,
             },
             {
                 Header: 'Fees',
                 accessor: 'totalFeeNQT',
+                width: 125,
                 Cell: function(props) {
                     return (
                         <span>
-                            {props.original.totalFeeNQT/100000000 || 0} JUP
+                            {Number(props.original.totalFeeNQT/100000000).toFixed(8) || 0} JUP
                         </span>
                     )
                 },
-                filterable: false,
             },
             {
                 Header: 'Amount',
                 accessor: 'amountNQT',
+                width: 125,
                 Cell: function(props) {
                     return (
                         <span>
-                            {props.original.amountNQT/100000000 || 0} JUP
+                            {Number(props.original.totalAmountNQT/100000000).toFixed(8) || 0} JUP
                         </span>
                     )
                 },
                 filterable: false,
             },
             {
-                Header: '# of Transactions',
+                Header: '# of Txs',
                 accessor: 'transactions.length',
+                width: 75,
                 filterable: false,
             },
             {
@@ -101,7 +102,7 @@ class BlockList extends Component {
                         </span>
                     )
                 },
-                filterable: true,
+                filterable: false,
             }
         ]
         let showTable = true
@@ -116,7 +117,7 @@ class BlockList extends Component {
                         data={blocks}
                         columns={columns}
                         loading={isLoading}
-                        defaultPageSize={10}
+                        defaultPageSize={20}
                         showPageSizeOptions={true}
                         minRows={0}                 
                     />

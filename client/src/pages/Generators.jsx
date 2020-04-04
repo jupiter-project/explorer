@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ReactTable from 'react-table'
 import api from '../api'
-
+import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 
 import 'react-table/react-table.css'
@@ -12,58 +12,70 @@ const Wrapper = styled.div`
     font-size: 12px;
 `
 
-class Account extends Component {
+class Generators extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            accountFind: '',
-            account: '',
+            generatorData: '',
             columns: [],
             isLoading: false,
         }
     }
 
     componentDidMount = async () => {
-        const { pathname } = this.props.location;
-        const accountFind = pathname.replace('/api/account/', '');
-        this.setState({
-            accountFind,
-        });
         this.setState({ isLoading: true })
 
-        await api.getAccount(accountFind).then(account => {
+        await api.getGenerators().then(generatorData => {
             this.setState({
-                account: [account.data.data],
+                generatorData: generatorData.data.data[0].generators,
                 isLoading: false,
             })
         })
     }
 
     render() {
-        const { account, isLoading } = this.state
+        const { generatorData, isLoading } = this.state
+        console.log('TCL: Generator -> render -> generator', generatorData)
 
         const columns = [
             {
-                Header: 'Account',
+                Header: 'Forger Address',
                 accessor: 'accountRS',
-                width: '50%',
-            },
-            {
-                Header: 'Balance',
-                accessor: 'balanceNQT',
-                width: '50%',
+                width: 200,
                 Cell: function(props) {
                     return (
                         <span>
-                            {props.original.balanceNQT/100000000 || 0} JUP
+                            <Link to={`/api/account/${props.original.accountRS}`}>{props.original.accountRS}</Link>
                         </span>
                     )
                 },
             },
+            {
+                Header: 'Effective Balance',
+                accessor: 'effectiveBalanceNXT',
+                width: 200,
+                Cell: function(props) {
+                    return (
+                        <span>
+                            {Number(props.original.effectiveBalanceNXT).toFixed(8) || 0} JUP
+                        </span>
+                    )
+                },
+            },
+            {
+                Header: 'Deadline',
+                accessor: 'deadline',
+                width: 200,
+            },
+            {
+                Header: 'Hit Time',
+                accessor: 'hitTime',
+                width: 200,
+            },
         ]
 
         let showTable = true
-        if (!account.length) {
+        if (!generatorData.length) {
             showTable = false
         }
 
@@ -71,29 +83,17 @@ class Account extends Component {
             <Wrapper>
                 {showTable && (
                     <ReactTable
-                        data={account}
+                        data={generatorData}
                         columns={columns}
                         loading={isLoading}
-                        defaultPageSize={1}
+                        defaultPageSize={20}
                         showPageSizeOptions={true}
                         minRows={0}
                     />
                 )}
-
-{/* For future Account Transactions
-                {showTable && (
-                    <ReactTable
-                        data={account}
-                        columns={columns}
-                        loading={isLoading}
-                        defaultPageSize={1}
-                        showPageSizeOptions={true}
-                        minRows={0}
-                    />
-                )} */}
             </Wrapper>
         )
     }
 }
 
-export default Account
+export default Generators
