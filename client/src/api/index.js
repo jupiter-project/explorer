@@ -13,6 +13,7 @@ export const getTx = id => api.get(`/tx/${id}`)
 export const getAccount = id => api.get(`/account/${id}`)
 export const getAccountTxs = id => api.get(`/accounts/${id}`)
 export const updateAccount = (id, payload) => api.put(`/account/${id}`, payload)
+export const recordAccount = payload => api.post(`/account/`, payload)
 export const recordPeer = payload => api.post(`/peer`, payload)
 export const getPeers = () => api.get(`/peers`)
 export const recordGenerator = payload => api.post(`/generator`, payload)
@@ -33,6 +34,7 @@ const apis = {
     getAccount,
     getAccountTxs,
     updateAccount,
+    recordAccount,
     recordPeer,
     getPeers,
     recordGenerator,
