@@ -22,6 +22,9 @@ class NavBar extends Component {
                     <Logo />
                     <Links />
                 </Nav>
+                <div>
+                    <input type="text" className="input" placeholder="Search...Todo" />
+                </div>
             </Container>
         )
     }
