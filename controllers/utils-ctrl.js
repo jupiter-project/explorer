@@ -10,7 +10,7 @@ getMaxSupply = async (req, res, err) => {
                 .json({ success: false, error: `You dun fucked up A-Aron` })
         }
 
-        return res.status(200).json(maxSupply[1].maxSupply)
+        return res.status(200).json(maxSupply[0].maxSupply)
     } catch (e) {
         console.log(err)
         return res.status(500).json({ success: false, error: `You dun fucked up A-Aron` });
