@@ -44,7 +44,7 @@ updateAccount = async (req, res) => {
         })
     }
 
-    await Account.findOne({ accountRS: req.params.id }, (error, account) => {
+    Account.findOne({ accountRS: req.params.id }, (error, account) => {
         if (error) {
             return res.status(404).json({
                 message: 'Account not found!',
