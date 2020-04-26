@@ -17,6 +17,24 @@ getMaxSupply = async (req, res, err) => {
     }
 }
 
+getIndexPrice = async (req, res, err) => {
+
+    try {
+        const indexPrice = await Utils.find()
+        i = indexPrice.length - 1
+        if (!indexPrice.length) {
+            return res
+                .status(404)
+                .json({ success: false, error: `You dun fucked up A-Aron` })
+        }
+
+        return res.status(200).json(indexPrice[i].indexPrice)
+    } catch (e) {
+        console.log(err)
+        return res.status(500).json({ success: false, error: `You dun fucked up A-Aron` });
+    }
+}
+
 getCirculatingSupply = async (req, res, err) => {
 
     try {
@@ -90,4 +108,5 @@ module.exports = {
     getCirculatingSupply,
     saveMaxSupply,
     getSupply,
+    getIndexPrice,
 }

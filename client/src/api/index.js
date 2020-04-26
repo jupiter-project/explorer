@@ -23,6 +23,7 @@ export const getMaxSupply = () =>  api.get(`/utils/maxsupply`)
 export const getSupply = () =>  api.get(`/utils/supply`)
 export const getCirculatingSupply = () =>  api.get(`/utils/circulatingsupply`)
 export const saveMaxSupply = payload => api.post(`/utils/savemaxsupply/`, payload)
+export const getIndexPrice = () =>  api.get(`/utils/indexprice`)
 
 const apis = {
     createBlock,
@@ -44,6 +45,7 @@ const apis = {
     getSupply,
     getCirculatingSupply,
     saveMaxSupply,
+    getIndexPrice,
 }
 
 export default apis
