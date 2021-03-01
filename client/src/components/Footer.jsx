@@ -13,7 +13,7 @@ class FooterNavArea extends Component {
             <div className="fixed-bottom">
             <Wrapper>
                 <span>version 0.6 Made with <span role="img" aria-labelledby="orangeHeart">🧡</span> 
-                by Sigwo Technologies <span role="img" aria-labelledby="copyright">©️</span> 2020</span>
+                by the Jupiter Project <span role="img" aria-labelledby="copyright">©️</span> 2021</span>
             </Wrapper>
             </div>
         )
